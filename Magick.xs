@@ -103,7 +103,7 @@ PPCODE:
 	/* repad and possibly convert */
 	{
 		int lw = dst_bpp / 8 * pim. width;
-		int y, bw;
+		unsigned int y, bw;
 		unsigned char * in, * out;
 		buffer = ( unsigned char *) malloc( lw * pim. height);
 		if ( buffer == NULL) {

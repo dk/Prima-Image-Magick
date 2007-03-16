@@ -1,4 +1,4 @@
-# $Id: Magick.pm,v 1.1 2007/03/16 17:16:14 dk Exp $
+# $Id: Magick.pm,v 1.2 2007/03/16 19:03:35 dk Exp $
 package Prima::Image::Magick;
 
 use strict;
@@ -7,7 +7,7 @@ require Exporter;
 our @ISA         = qw(Exporter);
 our @EXPORT_OK   = qw( prima_to_magick magick_to_prima );
 our %EXPORT_TAGS = ( all => \@EXPORT_OK );
-our $VERSION     = '0.01';
+our $VERSION     = '0.02';
 
 require XSLoader;
 XSLoader::load('Prima::Image::Magick', $VERSION);
@@ -44,8 +44,8 @@ Prima::Image::Magick - Juggle images between Prima and Image::Magick.
 
   use Prima::Image::Magick qw(:all);
 
-  use Prima qw(Application MsgBox);
-  use Image::Magick;
+  my $magick_image = prima_to_magick( $prima_image);
+  my $prima_image  = magick_to_prima( $magick_image); 
 
 =head1 DESCRIPTION
 
@@ -55,7 +55,7 @@ that can be exported either individually or with the C<:all> tag.
 
 =head1 SEE ALSO
 
-L<Prima>, L<Image::Magick>.
+L<Prima>, L<Image::Magick>, L<examples/example.pl>.
 
 =head1 AUTHOR
 

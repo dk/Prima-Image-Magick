@@ -108,7 +108,7 @@ PPCODE:
 		buffer = ( unsigned char *) malloc( lw * pim. height);
 		if ( buffer == NULL) {
 			DestroyImage( ip);
-			croak("not enought memory (%d bytes)", lw * pim. height);
+			croak("not enough memory (%d bytes)", lw * pim. height);
 		}
 		/* bzero( buffer, lw * pim. height); */
 	
@@ -173,7 +173,7 @@ PPCODE:
 		croak("Image::Magick object is empty");
 	case 0:
 		if ( !( ssvv = av_fetch(av,0,0)))
-			croak("Cannot fetch image from Image::Magick object");
+			croak("cannot fetch image from Image::Magick object");
 		sv = *ssvv;
 		if ( !sv || !sv_isobject(sv) || SvTYPE(SvRV(sv)) != SVt_PVMG)
 			croak("Image from Image::Magick object is invalid");
@@ -196,7 +196,7 @@ PPCODE:
 	if ( !( buffer = malloc(
 		pim. line_size * pim. height
 	)))
-		croak("Not enough memory (%d bytes)", pim. line_size * pim. height);
+		croak("not enough memory (%d bytes)", pim. line_size * pim. height);
 	/* bzero( buffer, pim. line_size * pim. height); */
 
 	GetExceptionInfo( &exception);

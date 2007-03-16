@@ -1,6 +1,7 @@
 Changes
 Magick.xs
-example.pl
+example/example.pl
+example/screenshot.pl
 mag.c
 mag.h
 prima.c

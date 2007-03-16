@@ -1,0 +1,6 @@
+Revision history for Perl extension Prima::Image::Magick.
+
+0.01  Thu Mar 15 11:36:50 2007
+	- original version; created by h2xs 1.23 with options
+		-n Prima::Image::Magick
+

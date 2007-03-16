@@ -1,0 +1,13 @@
+Changes
+Magick.xs
+example.pl
+mag.c
+mag.h
+prima.c
+prima.h
+Makefile.PL
+MANIFEST
+README
+t/Prima-Image-Magick.t
+lib/Prima/Image/Magick.pm
+META.yml                                 Module meta-data (added by MakeMaker)

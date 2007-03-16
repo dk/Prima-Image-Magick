@@ -1,0 +1,15 @@
+--- #YAML:1.0
+name:                Prima-Image-Magick
+version:             0.01
+abstract:            Juggle images between Prima and Image::Magick.
+license:             ~
+generated_by:        ExtUtils::MakeMaker version 6.31
+distribution_type:   module
+requires:     
+    Image::Magick:                 1
+    Prima:                         1
+meta-spec:
+    url:     http://module-build.sourceforge.net/META-spec-v1.2.html
+    version: 1.2
+author:
+    - Dmitry Karasik <dmitry@karasik.eu.org>

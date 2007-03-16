@@ -1,9 +1,9 @@
-# $Id: Prima-Image-Magick.t,v 1.1 2007/03/16 17:16:14 dk Exp $
+# $Id: Prima-Image-Magick.t,v 1.2 2007/03/16 17:22:39 dk Exp $
 use strict;
 use Test::More tests => 17;
 
 eval {
-	require Prima::noX11;
+	use Prima::noX11;
 	require Prima;
 };
 
@@ -14,7 +14,6 @@ eval {
 };
 ok(not($@), 'require Prima::Image::Magick'); warn $@ if $@;
 
-use Prima;
 use Prima::Image::Magick qw(:all);
 
 my $i = Prima::Image-> new( 

@@ -21,6 +21,10 @@ $m-> AdaptiveResize( width => 100, height => 100);
 push @types, [ magick_to_prima($m), 'adaptive' ];
 
 $m = prima_to_magick($p);
+$m-> Resize( width => 100, height => 100, filter => 'Gaussian');
+push @types, [ magick_to_prima($m), 'gaussian' ];
+
+$m = prima_to_magick($p);
 $m-> Resize( width => 100, height => 100, filter => 'Cubic');
 push @types, [ magick_to_prima($m), 'cubic' ];
 

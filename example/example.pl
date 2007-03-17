@@ -16,17 +16,17 @@ my $o = $p-> dup;
 $o-> size( 100, 100);
 push @types, [ $o, 'linear' ];
 
-my $m = prima_to_magick($p);
-$m-> AdaptiveResize( width => 100, height => 100);
-push @types, [ magick_to_prima($m), 'adaptive' ];
+my $adaptive = $p-> dup;
+$adaptive-> AdaptiveResize( width => 100, height => 100);
+push @types, [ $adaptive, 'adaptive' ];
 
-$m = prima_to_magick($p);
-$m-> Resize( width => 100, height => 100, filter => 'Gaussian');
-push @types, [ magick_to_prima($m), 'gaussian' ];
+my $gaussian = $p-> dup;
+$gaussian-> Resize( width => 100, height => 100, filter => 'Gaussian');
+push @types, [ $gaussian, 'gaussian' ];
 
-$m = prima_to_magick($p);
-$m-> Resize( width => 100, height => 100, filter => 'Cubic');
-push @types, [ magick_to_prima($m), 'cubic' ];
+my $cubic = $p-> dup;
+$cubic-> Resize( width => 100, height => 100, filter => 'Cubic');
+push @types, [ $cubic, 'cubic' ];
 
 Prima::MainWindow-> new(
 	text => 'Prima::Image::Magick demo',

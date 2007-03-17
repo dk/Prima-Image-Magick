@@ -1,6 +1,6 @@
-# $Id: Prima-Image-Magick.t,v 1.2 2007/03/16 17:22:39 dk Exp $
+# $Id: Prima-Image-Magick.t,v 1.3 2007/03/17 11:42:37 dk Exp $
 use strict;
-use Test::More tests => 17;
+use Test::More tests => 18;
 
 eval {
 	use Prima::noX11;
@@ -52,7 +52,7 @@ sub try
 	$i-> type( $typecmp) if $typecmp;
 	$j-> type( $i-> type);
 	$j-> resample( 0.0, 255.0, 0.0, 1.0) if $typecmp;
-	ok( $j-> data eq $i-> data);
+	ok( $j-> data eq $i-> data, "conversion ok $typedesc");
 }
 
 try( $i, im::Byte,   'Byte');
@@ -64,3 +64,7 @@ $i-> resample( 0.0, 255.0, 0.0, 1.0);
 
 try( $i, im::Double, 'double', im::Double);
 try( $i, im::Float, 'float', im::Float);
+
+my $k = $i-> dup;
+$i-> Emboss;
+ok( $i-> data ne $k-> data, "inplace conversion");

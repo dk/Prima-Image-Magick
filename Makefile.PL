@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.1 2007/03/16 17:16:14 dk Exp $
+# $Id: Makefile.PL,v 1.2 2008/01/02 21:16:54 dk Exp $
 use 5.008008;
 use ExtUtils::MakeMaker;
 
@@ -19,7 +19,7 @@ WriteMakefile(
 	},
 	ABSTRACT_FROM     => 'lib/Prima/Image/Magick.pm',
 	AUTHOR            => 'Dmitry Karasik <dmitry@karasik.eu.org>',
-	LIBS              => [ $l . ' -lMagick' ],
+	LIBS              => [ $l . (( $^O =~ /win32/i) ? ' -lCORE_RL_magick_' : ' -lMagick' )  ],
 	DEFINE            => $d,
 	INC               => $i,
 	OBJECT            => "prima\$(OBJ_EXT) mag\$(OBJ_EXT) Magick\$(OBJ_EXT)",

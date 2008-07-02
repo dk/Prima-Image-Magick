@@ -5,3 +5,5 @@ Revision history for Perl extension Prima::Image::Magick.
 0.02  - copy Image::Magick namespace into Prima::Image
 
 0.03  - build on win32
+
+0.04-5  - upgrade for recent versions of ImageMagick

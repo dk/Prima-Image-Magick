@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.3 2008/07/02 09:26:20 dk Exp $
+# $Id: Makefile.PL,v 1.4 2009/12/28 11:14:31 dk Exp $
 use 5.008008;
 use ExtUtils::MakeMaker;
 
@@ -7,7 +7,7 @@ eval {
 	require Prima::Config;
 	$d = join(' ', map { "-D$_" } @{$Prima::Config::Config{cdefs}});
 	$i = join(' ', map { "-I$_" } @{$Prima::Config::Config{incpaths}});
-        for ( @{$Prima::Config::Config{incpaths}}) {
+        for ( '/usr/include', @{$Prima::Config::Config{incpaths}}) {
                 $i .= " -I$_/ImageMagick" if -d "$_/ImageMagick";
         }
 	$l = $Prima::Config::Config{libname} if $^O =~ /win32|os2/i;

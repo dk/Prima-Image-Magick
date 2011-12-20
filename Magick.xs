@@ -64,6 +64,9 @@ PPCODE:
 			pixeltype = ShortPixel;
 		} else if ( pim. bpp == 8) {
 			pixeltype = CharPixel;
+		} else if ( pim. bpp == 4) {
+			pixeltype = CharPixel;
+			dst_bpp   = 8; /* force-convert to byte */
 		} else if ( pim. bpp == 1) {
 			pixeltype = CharPixel;
 			dst_bpp   = 8; /* force-convert to byte */

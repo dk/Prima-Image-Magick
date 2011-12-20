@@ -1,4 +1,4 @@
-/* $Id: prima.c,v 1.1 2007/03/16 17:16:14 dk Exp $ */
+/* $Id: prima.c,v 1.2 2011/12/20 08:15:24 dk Exp $ */
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -39,6 +39,7 @@ read_prima_image_data( SV * input, pim_image * pim)
 
 void bytecopy  (void *s,void *d,int w,unsigned char *p) { memcpy          ( d, s, w); }
 void bitexp    (void *s,void *d,int w,unsigned char *p) { bc_mono_graybyte( s, d, w, (PRGBColor)p); }
+void nibbleexp (void *s,void *d,int w,unsigned char *p) { bc_nibble_graybyte( s, d, w, (PRGBColor)p); }
 void bitrgb    (void *s,void *d,int w,unsigned char *p) { bc_mono_rgb     ( s, d, w, (PRGBColor)p); }
 void nibblergb (void *s,void *d,int w,unsigned char *p) { bc_nibble_rgb   ( s, d, w, (PRGBColor)p); }
 void bytergb   (void *s,void *d,int w,unsigned char *p) { bc_byte_rgb     ( s, d, w, (PRGBColor)p); }
@@ -61,6 +62,8 @@ get_prima_bitcopy_proc( int bpp_from, int bpp_to )
 		switch ( bpp_from) {
 		case 1:
 			return bitexp;
+		case 4:
+			return nibbleexp;
 		}
 	}
 

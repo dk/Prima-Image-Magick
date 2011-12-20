@@ -1,4 +1,4 @@
-/* $Id: prima.h,v 1.1 2007/03/16 17:16:14 dk Exp $ */
+/* $Id: prima.h,v 1.2 2011/12/20 09:45:01 dk Exp $ */
 
 #ifdef __cplusplus
 extern "C" {
@@ -18,15 +18,18 @@ typedef struct _pim_image {
 	unsigned int    height;
 	unsigned int    bpp;
 	unsigned int    category;
+	
+	double   resample_coeff_a;
+	double   resample_coeff_b;
 } pim_image;
 
-typedef void BitCopyProc( void * src, void * dst, int width, unsigned char * palette);
+typedef void BitCopyProc( pim_image * pim, void * src, void * dst, int width);
 
 void
 read_prima_image_data( SV * input, pim_image * pim);
 
 BitCopyProc *
-get_prima_bitcopy_proc( int bpp_from, int bpp_to );
+get_prima_bitcopy_proc( int category, int bpp_from, int bpp_to );
 
 void
 allocate_prima_image( SV * input, int width, int height, int rgb);

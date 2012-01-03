@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.5 2012/01/03 16:45:33 dk Exp $
+# $Id: Makefile.PL,v 1.6 2012/01/03 16:48:41 dk Exp $
 use 5.008008;
 use ExtUtils::MakeMaker;
 
@@ -38,6 +38,6 @@ WriteMakefile(
 	AUTHOR            => 'Dmitry Karasik <dmitry@karasik.eu.org>',
 	LIBS              => [ "$l -l$libname" ],
 	DEFINE            => $d,
-	INC               => "-Iinclude $i",
+	INC               => $i,
 	OBJECT            => "prima\$(OBJ_EXT) mag\$(OBJ_EXT) Magick\$(OBJ_EXT)",
 );

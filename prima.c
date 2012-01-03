@@ -1,4 +1,4 @@
-/* $Id: prima.c,v 1.3 2011/12/20 09:45:01 dk Exp $ */
+/* $Id: prima.c,v 1.4 2012/01/03 16:45:33 dk Exp $ */
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -34,6 +34,7 @@ read_prima_image_data( SV * input, pim_image * pim)
 		pim-> category  |= IS_COMPLEX;
 		want_resample = 1;
 	} else if ( i-> type & imRealNumber) {
+		pim-> category  |= ( pim-> bpp == 8 * sizeof( float)) ? IS_FLOAT : IS_DOUBLE;
 		want_resample = 1;
 	}
 		

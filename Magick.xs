@@ -51,9 +51,10 @@ PPCODE:
 
 	/*
 	force-convert all float/real/short/long etc pixels into 8-bit
-	because even though ImageMagick understands these pixel types, it doesn't
-	normalize them -- so we resample, them explicitly to 0-255, and also
-	convert to 8 bit to avoid mis-interpertattion of non-byte data
+	because even though ImageMagick understands these pixel types, it converts them internally
+	to Char anyway, and doesn't normalize them. (note: it didn't convert them before, but something
+	changed and it does so now). So we do that job ourselves -- we resample them explicitly to 0-255,
+	and convert to 8 bit to avoid mis-interpertattion of non-byte data, in general
 	*/
 
 	if ( pim. category & IS_FLOAT) {
@@ -100,11 +101,11 @@ PPCODE:
 		croak("cannot AcquireMagickInfo()");
         info-> colorspace = colorspace;
 	sprintf( info-> size = sizebuf, "%dx%d", pim. width, pim. height);
-	ip = AllocateImage( info);
+	ip = AcquireImage( info);
 	info-> size = NULL;
 	DestroyImageInfo( info);
 	if ( ip == NULL)
-		croak("cannot AllocateImage()");
+		croak("cannot AcquireImage()");
 
 	/* repad and possibly convert */
 	{

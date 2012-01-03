@@ -1,4 +1,4 @@
-# $Id: Prima-Image-Magick.t,v 1.3 2007/03/17 11:42:37 dk Exp $
+# $Id: Prima-Image-Magick.t,v 1.4 2012/01/03 16:45:33 dk Exp $
 use strict;
 use Test::More tests => 18;
 
@@ -51,7 +51,7 @@ sub try
 
 	$i-> type( $typecmp) if $typecmp;
 	$j-> type( $i-> type);
-	$j-> resample( 0.0, 255.0, 0.0, 1.0) if $typecmp;
+	$j-> resample( $i-> rangeLo, $i-> rangeHi, 0.0, 255.0) if $typecmp;
 	ok( $j-> data eq $i-> data, "conversion ok $typedesc");
 }
 
@@ -60,7 +60,7 @@ try( $i, im::RGB,    'RGB');
 try( $i, im::BW,     '1-bit');
 
 $i-> type(im::Double);
-$i-> resample( 0.0, 255.0, 0.0, 1.0);
+$i-> resample( $i-> rangeLo, $i-> rangeHi, 0.0, 255.0);
 
 try( $i, im::Double, 'double', im::Double);
 try( $i, im::Float, 'float', im::Float);

@@ -7,3 +7,5 @@ Revision history for Perl extension Prima::Image::Magick.
 0.03  - build on win32
 
 0.04-5  - upgrade for recent versions of ImageMagick
+
+0.06  - force-convert 16-bit (and higher) image data into 8-bits

@@ -1,4 +1,4 @@
-# $Id: Magick.pm,v 1.5 2008/07/02 09:26:20 dk Exp $
+# $Id: Magick.pm,v 1.6 2012/01/03 16:47:16 dk Exp $
 package Prima::Image::Magick;
 
 use strict;
@@ -7,7 +7,7 @@ require Exporter;
 our @ISA         = qw(Exporter);
 our @EXPORT_OK   = qw( prima_to_magick magick_to_prima );
 our %EXPORT_TAGS = ( all => \@EXPORT_OK );
-our $VERSION     = '0.05';
+our $VERSION     = '0.06';
 
 require XSLoader;
 XSLoader::load('Prima::Image::Magick', $VERSION);

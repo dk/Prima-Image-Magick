@@ -20,6 +20,11 @@ extern "C" {
 
 MODULE        = Prima::Image::Magick		PACKAGE       = Prima::Image::Magick
 
+BOOT:
+{
+	prima_bootcheck();
+}
+
 void 
 convert_to_magick(prima_image,magick_image)
 PROTOTYPE: DISABLE

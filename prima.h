@@ -1,4 +1,4 @@
-/* $Id: prima.h,v 1.2 2011/12/20 09:45:01 dk Exp $ */
+/* $Id: prima.h,v 1.3 2012/08/01 08:11:16 dk Exp $ */
 
 #ifdef __cplusplus
 extern "C" {
@@ -24,6 +24,9 @@ typedef struct _pim_image {
 } pim_image;
 
 typedef void BitCopyProc( pim_image * pim, void * src, void * dst, int width);
+
+void
+prima_bootcheck(void);
 
 void
 read_prima_image_data( SV * input, pim_image * pim);

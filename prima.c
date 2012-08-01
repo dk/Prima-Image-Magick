@@ -1,4 +1,4 @@
-/* $Id: prima.c,v 1.4 2012/01/03 16:45:33 dk Exp $ */
+/* $Id: prima.c,v 1.5 2012/08/01 08:11:16 dk Exp $ */
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -112,6 +112,11 @@ allocate_prima_image( SV * input, int width, int height, int rgb)
 	i-> self-> create_empty(( Handle) i, width, height, rgb ? imRGB : imByte);
 }
 
+void
+prima_bootcheck(void)
+{
+	PRIMA_VERSION_BOOTCHECK;
+}
 
 #ifdef __cplusplus
 }

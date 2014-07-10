@@ -166,8 +166,12 @@ PPCODE:
 {
 	Image * ip;
 	pim_image pim;
-	ExceptionInfo exception;
-
+#if MagickLibVersion > 0x688
+	ExceptionInfo* exception;
+#else
+	ExceptionInfo  exception_buf;
+	ExceptionInfo* exception = exception_buf;
+#endif
 	unsigned char * buffer;
 
 	SV * sv, **ssvv;
@@ -210,8 +214,11 @@ PPCODE:
 	)))
 		croak("not enough memory (%d bytes)", pim. line_size * pim. height);
 	/* bzero( buffer, pim. line_size * pim. height); */
-
-	GetExceptionInfo( &exception);
+#if MagickLibVersion > 0x688
+	exception = AcquireExceptionInfo();
+#else
+	GetExceptionInfo( exception);
+#endif
 	if ( !( ExportImagePixels( 
 		ip, 
 		0, 0, /* offsets */
@@ -219,10 +226,13 @@ PPCODE:
 		( ip-> colorspace == RGBColorspace) ? "BGR" : "I",
 		CharPixel,
 		buffer,
-		&exception
+		exception
 	))) {
+#if MagickLibVersion > 0x688
+	exception = DestroyExceptionInfo(exception);
+#endif
 		free( buffer);
-		magick_croak( "ExportImagePixels", &exception);
+		magick_croak( "ExportImagePixels", exception);
 	}
 
 	/* reshuffle */

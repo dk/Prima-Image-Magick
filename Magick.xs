@@ -151,6 +151,9 @@ PPCODE:
 		DestroyImage( ip);
 		magick_croak("ImportImagePixels", &ip-> exception);
 	}
+#if MagickLibVersion > 0x688
+	ip->colorspace = colorspace;
+#endif
 	free( buffer);
 
 	/* store as Image::Magick object */

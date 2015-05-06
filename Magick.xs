@@ -173,7 +173,7 @@ PPCODE:
 	ExceptionInfo* exception;
 #else
 	ExceptionInfo  exception_buf;
-	ExceptionInfo* exception = exception_buf;
+	ExceptionInfo* exception = &exception_buf;
 #endif
 	unsigned char * buffer;
 

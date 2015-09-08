@@ -10,21 +10,17 @@ eval {
         for ( '/usr/include', @{$Prima::Config::Config{incpaths}}) {
                 $i .= " -I$_/ImageMagick" if -d "$_/ImageMagick";
         }
-	$l = $Prima::Config::Config{libname} if $^O =~ /win32|os2/i;
+	$l = $Prima::Config::Config{libname} if $^O =~ /win32/i;
+	$i .= ' -Iinclude';
 };
 
-my $libname;
-if ( $^O =~ /win32/i) {
-	$libname = 'CORE_RL_magick_';
-} else {
-	$libname = 'MagickCore';
-	if ( 
-		`convert -version` =~ /Version: ImageMagick (\d+\.\d+\.\d+)/ 
-	) {
-		my $v = $1;
-		$v =~ s/\.//g;
-		$libname = 'Magick' if $v < 641;
-	}
+my $libname = 'MagickCore';
+if ( 
+	`convert -version` =~ /Version: ImageMagick (\d+\.\d+\.\d+)/ 
+) {
+	my $v = $1;
+	$v =~ s/\.//g;
+	$libname = 'Magick' if $v < 641;
 }
 
 WriteMakefile(

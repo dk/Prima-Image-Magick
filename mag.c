@@ -14,7 +14,7 @@ void magick_croak( char * what, ExceptionInfo * exception )
 {
         char message[MaxTextExtent] = "unknown exception";
         if ((exception)->severity != UndefinedException)
-#if MagickLibVersion > 0x688
+#if MagickLibVersion > 0x676
                 FormatLocaleString( 
 #else
                 FormatMagickString( 

@@ -151,7 +151,7 @@ PPCODE:
 		DestroyImage( ip);
 		magick_croak("ImportImagePixels", &ip-> exception);
 	}
-#if MagickLibVersion > 0x688
+#if MagickLibVersion > 0x676
 	ip->colorspace = colorspace;
 #endif
 	free( buffer);
@@ -169,7 +169,7 @@ PPCODE:
 {
 	Image * ip;
 	pim_image pim;
-#if MagickLibVersion > 0x688
+#if MagickLibVersion > 0x676
 	ExceptionInfo* exception;
 #else
 	ExceptionInfo  exception_buf;
@@ -217,7 +217,7 @@ PPCODE:
 	)))
 		croak("not enough memory (%d bytes)", pim. line_size * pim. height);
 	/* bzero( buffer, pim. line_size * pim. height); */
-#if MagickLibVersion > 0x688
+#if MagickLibVersion > 0x676
 	exception = AcquireExceptionInfo();
 #else
 	GetExceptionInfo( exception);
@@ -231,7 +231,7 @@ PPCODE:
 		buffer,
 		exception
 	))) {
-#if MagickLibVersion > 0x688
+#if MagickLibVersion > 0x676
 	exception = DestroyExceptionInfo(exception);
 #endif
 		free( buffer);

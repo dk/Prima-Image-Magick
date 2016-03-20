@@ -7,7 +7,7 @@ require Exporter;
 our @ISA         = qw(Exporter);
 our @EXPORT_OK   = qw( prima_to_magick magick_to_prima );
 our %EXPORT_TAGS = ( all => \@EXPORT_OK );
-our $VERSION     = '0.06';
+our $VERSION     = '0.07';
 
 require XSLoader;
 XSLoader::load('Prima::Image::Magick', $VERSION);

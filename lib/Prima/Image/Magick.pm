@@ -17,8 +17,13 @@ use Image::Magick;
 
 # proxy Image::Magick methods into Prima::Image
 {
+	no strict 'refs';
 	my $v = join('|', @Image::Magick::EXPORT);
-	my %d = map { $_ => 1 } grep { !/^([a-z_].*|[A-Z_]+|$v|Prima)$/ } keys %Image::Magick::;
+	my $package = 'Image::Magick';
+	if (my @isa = grep { /Image::Magick/ } @Image::Magick::ISA) {
+		$package = $isa[0];
+	}
+	my %d = map { $_ => 1 } grep { !/^([a-z_].*|[A-Z_]+|$v|Prima)$/ } keys %{$package . '::'};
 	# delete aliases
 	for my $meth ( keys %d) {
 		if ( exists $d{"${meth}Image"}) {
@@ -40,7 +45,6 @@ use Image::Magick;
 			$self-> EndMagick;
 			return wantarray ? @res : $res[0];
 		};
-		no strict 'refs';
 		*{"Prima::Image::$meth"} = $sub;
 	}
 }

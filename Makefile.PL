@@ -10,6 +10,11 @@ eval {
         for ( '/usr/include', @{$Prima::Config::Config{incpaths}}) {
                 $i .= " -I$_/ImageMagick" if -d "$_/ImageMagick";
         }
+	if ( $^O =~ /win32/i ) {
+		for my $p ( split ";", $ENV{PATH}) {
+			$i .= " -I\"$p/include\"" if -d "$p/include/magick";
+		}
+	}
 	$l = $Prima::Config::Config{libname} if $^O =~ /win32/i;
 	$i .= ' -Iinclude';
 };

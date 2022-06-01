@@ -3,7 +3,7 @@ use 5.008008;
 use ExtUtils::MakeMaker;
 
 my ( $i, $d, $l) = ('','','');
-eval { 
+eval {
 	require Prima::Config;
 	$d = join(' ', map { "-D$_" } @{$Prima::Config::Config{cdefs}});
 	$i = join(' ', map { "-I$_" } @{$Prima::Config::Config{incpaths}});
@@ -25,8 +25,8 @@ eval {
 };
 
 my $magicklib = '-lMagickCore';
-if ( 
-	`convert -version` =~ /Version: ImageMagick (\d+\.\d+\.\d+)/ 
+if (
+	`convert -version` =~ /Version: ImageMagick (\d+\.\d+\.\d+)/
 ) {
 	my $v = $1;
 	$v =~ s/\.//g;

@@ -25,7 +25,7 @@ read_prima_image_data( SV * input, pim_image * pim)
 	pim-> bpp       = i-> type & imBPP;
 	pim-> colors    = i-> palSize;
 	pim-> palette   = (unsigned char*) i-> palette;
-	pim-> category  = 0; 
+	pim-> category  = 0;
 	if ( i-> type & imGrayScale)
 		pim-> category  |= IS_GRAY;
 		want_resample = 1;
@@ -37,13 +37,13 @@ read_prima_image_data( SV * input, pim_image * pim)
 		pim-> category  |= ( pim-> bpp == 8 * sizeof( float)) ? IS_FLOAT : IS_DOUBLE;
 		want_resample = 1;
 	}
-		
+
 	if ( want_resample) {
 		double srcLo = i-> self-> stats(( Handle) i, 0, isRangeLo, 0);
 		double srcHi = i-> self-> stats(( Handle) i, 0, isRangeHi, 0);
 		double dstHi = 255;
 		double dstLo = 0;
-	
+
 		if ( srcHi != srcLo ) {
 			pim-> resample_coeff_a = (dstHi - dstLo) / ( srcHi - srcLo );
 			pim-> resample_coeff_b = (dstLo * srcHi - dstHi * srcLo) / ( srcHi - srcLo );
@@ -72,9 +72,9 @@ void doubles(pim_image*pim,double *s,Byte *d,int w) RESAMPLE
 BitCopyProc *
 get_prima_bitcopy_proc( int category, int bpp_from, int bpp_to )
 {
-	if ( category & IS_FLOAT) 
+	if ( category & IS_FLOAT)
 		return (BitCopyProc*) floats;
-	if ( category & IS_DOUBLE) 
+	if ( category & IS_DOUBLE)
 		return (BitCopyProc*) doubles;
 
 	switch( bpp_to) {

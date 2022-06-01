@@ -63,8 +63,8 @@ sub Prima::Image::BeginMagick
 sub Prima::Image::EndMagick
 {
 	my $self = $_[0];
-	return unless 
-		exists $self-> {__ImageMagickStorage} and 
+	return unless
+		exists $self-> {__ImageMagickStorage} and
 		0 == $self-> {__ImageMagickStorage}->[0]--;
 	convert_to_prima( $self-> {__ImageMagickStorage}->[1], $self);
 	delete $self-> {__ImageMagickStorage};
@@ -125,11 +125,11 @@ is actually the same as
     $m-> Edge( radius => 5);
     $prima_image = magick_to_prima( $m);
 
-except that C<$prima_image> internally remains the same perl object. 
+except that C<$prima_image> internally remains the same perl object.
 
 This approach is obviusly ineffective when more than one call to ImageMagick
 code is required. To avoid the ineffeciency, wrappers C<BeginMagick> and C<EndMagick>
-are declared, so 
+are declared, so
 
     $prima_image-> BeginMagick;
     $prima_image-> Edge( radius => 5);
@@ -137,7 +137,7 @@ are declared, so
     $prima_image-> EndMagick;
 
 is same as
-    
+
     my $m = prima_to_magick( $prima_image);
     $m-> Edge( radius => 5);
     $m-> Enhance;
@@ -168,7 +168,7 @@ Exported either by explicit request or as a part of C<use Prima::Image::Magick '
 
 Copies content of C<$prima_image> to C<$magick_image>. Not to be called directy
 unless really necessary; the method is not exported, and its syntax may change
-in future. 
+in future.
 
 =item convert_to_prima $magick_image, $prima_image
 

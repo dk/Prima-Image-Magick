@@ -18,7 +18,7 @@ typedef struct _pim_image {
 	unsigned int    height;
 	unsigned int    bpp;
 	unsigned int    category;
-	
+
 	double   resample_coeff_a;
 	double   resample_coeff_b;
 } pim_image;

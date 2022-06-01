@@ -25,7 +25,7 @@ BOOT:
 	prima_bootcheck();
 }
 
-void 
+void
 convert_to_magick(prima_image,magick_image)
 PROTOTYPE: DISABLE
 PPCODE:
@@ -44,7 +44,7 @@ PPCODE:
 	ColorspaceType colorspace;
 	StorageType pixeltype;
 	BitCopyProc * bitcopyproc;
-	
+
 	/* check if the conversion is possible at all */
 	read_prima_image_data( ST(0), &pim);
 	dst_bpp  = pim. bpp;
@@ -71,13 +71,13 @@ PPCODE:
 		colorspace = GRAYColorspace;
 		dst_bpp   = 8; /* force-convert to byte */
 	} else if ( pim. category & IS_GRAY) {
-		if ( 
+		if (
 			pim. bpp != 1 &&
 			pim. bpp != 4 &&
 			pim. bpp != 8 &&
 			pim. bpp != 16 &&
 			pim. bpp != 32
-		) 
+		)
 			croak("Cannot convert this image type to magick");
 		pixeltype = CharPixel;
 		dst_bpp   = 8; /* force-convert to byte */
@@ -131,8 +131,8 @@ PPCODE:
 			/* count in pixels for other types */
 			bw = pim. width;
 		}
-		
-		for ( 
+
+		for (
 			in = pim. data, y = 0, out = buffer + lw * ( pim. height - 1);
 			y < pim. height;
 			y++, in += pim. line_size, out -= lw
@@ -141,9 +141,9 @@ PPCODE:
 	}
 
 	/* transfer */
-	if ( !ImportImagePixels( 
-		ip, 0, 0, 
-		pim.width, pim.height, 
+	if ( !ImportImagePixels(
+		ip, 0, 0,
+		pim.width, pim.height,
 		( colorspace == GRAYColorspace) ? "I" : "BGR",
 		pixeltype, buffer
 	)) {
@@ -162,7 +162,7 @@ PPCODE:
 	SvREFCNT_dec( sv);
 }
 
-void 
+void
 convert_to_prima(magick_image,prima_image)
 PROTOTYPE: DISABLE
 PPCODE:
@@ -183,7 +183,7 @@ PPCODE:
 
 	/* get down to imagemagick object */
 	sv = SvRV( ST(0));
-	if ( SvTYPE( sv) != SVt_PVAV) 
+	if ( SvTYPE( sv) != SVt_PVAV)
 		croak("Image::Magick object is not an array");
 	av = ( AV*) sv;
 	n = av_len( av);
@@ -203,10 +203,10 @@ PPCODE:
 	}
 
 	/* prepare prima object */
-	allocate_prima_image( 
-		ST( 1), 
-		ip-> columns, 
-		ip-> rows, 
+	allocate_prima_image(
+		ST( 1),
+		ip-> columns,
+		ip-> rows,
 		ip-> colorspace != GRAYColorspace
 	);
 	read_prima_image_data( ST( 1), &pim);
@@ -222,8 +222,8 @@ PPCODE:
 #else
 	GetExceptionInfo( exception);
 #endif
-	if ( !( ExportImagePixels( 
-		ip, 
+	if ( !( ExportImagePixels(
+		ip,
 		0, 0, /* offsets */
 		ip-> columns, ip-> rows,
 		( ip-> colorspace == GRAYColorspace) ? "I" : "BGR",

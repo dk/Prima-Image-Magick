@@ -30,12 +30,12 @@ push @types, [ $cubic, 'cubic' ];
 
 Prima::MainWindow-> new(
 	text => 'Prima::Image::Magick demo',
-)-> insert( map { 
-	[ 'Prima::Label'       => 
-		pack  => { expand => 1, fill => 'both' }, 
+)-> insert( map {
+	[ 'Prima::Label'       =>
+		pack  => { expand => 1, fill => 'both' },
 		text  => "$$_[1] scaling"
-	], [ 'Prima::ImageViewer' => 
-		pack  => { expand => 1, fill => 'both' }, 
+	], [ 'Prima::ImageViewer' =>
+		pack  => { expand => 1, fill => 'both' },
 		image => $$_[0]
 	] } @types
 );
